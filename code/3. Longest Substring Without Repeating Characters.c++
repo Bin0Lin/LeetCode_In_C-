@@ -14,21 +14,21 @@ public:
             if(not_used[s[i]] == true)              //if it is not_used
             {
                 not_used[s[i]] = false;             //mark it as used
-                count++;                            //the current length increases 
+                count++;                            
             } 
-            else                                    
+            else                                    //when there is duplicate characters in the current substring                            
             {
                 if(count > max_len) max_len = count;//if the current length is larger than maximum length, then set the current length as maximum length
                 while(true)
                 {
-                    not_used[s[start]] = true;      //clear the used status 
-                    count--;                        //the current length decreases 
-                    if(s[start] == s[i])  break;    //stop the loop until find where the duplicate character is                
-                    start++;                        //the start index increases
+                    not_used[s[start]] = true;      //clear the used status of the current substring
+                    count--;                        
+                    if(s[start] == s[i])  break;    //set the start position stay at the position j (where the duplicate character firstly occurs)           
+                    start++;                        
                 }                           
-                start++;                            //start next round from the next position
-                not_used[s[i]] = false;             //new round start from i
-                count++;                            //the new round current length increases
+                start++;                            //set the start position at (j + 1) 
+                not_used[s[i]] = false;             //start new substring from new start
+                count++;                            
             }
         }
         if(max_len < count) max_len = count;        //compare the last round length to maximum length
